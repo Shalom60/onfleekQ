@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-07-07T16:41:52 WAT" name="Default suite" finished-at="2025-07-07T16:42:44 WAT" duration-ms="51905">
+    <groups>
+    </groups>
+    <test started-at="2025-07-07T16:41:52 WAT" name="Default test" finished-at="2025-07-07T16:42:44 WAT" duration-ms="51905">
+      <class name="client.logout">
+        <test-method is-config="true" signature="setup()[pri:0, instance:client.logout@49438269]" started-at="2025-07-07T16:41:52 WAT" name="setup" finished-at="2025-07-07T16:42:05 WAT" duration-ms="13691" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="A_login_test()[pri:0, instance:client.logout@49438269]" started-at="2025-07-07T16:42:05 WAT" name="A_login_test" finished-at="2025-07-07T16:42:26 WAT" duration-ms="20622" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- A_login_test -->
+        <test-method signature="B_logout_test()[pri:0, instance:client.logout@49438269]" started-at="2025-07-07T16:42:26 WAT" name="B_logout_test" finished-at="2025-07-07T16:42:38 WAT" duration-ms="11543" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- B_logout_test -->
+        <test-method is-config="true" signature="close()[pri:0, instance:client.logout@49438269]" started-at="2025-07-07T16:42:38 WAT" name="close" finished-at="2025-07-07T16:42:44 WAT" duration-ms="5974" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- client.logout -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
