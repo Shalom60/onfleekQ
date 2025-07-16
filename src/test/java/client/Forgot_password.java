@@ -35,7 +35,7 @@ public class Forgot_password {
     }
 
     @Test
-    public void test(){
+    public void test() throws InterruptedException{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(60000));
 
 // Sign-In Test
@@ -56,23 +56,28 @@ public class Forgot_password {
         wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.className("android.widget.EditText")));
         WebElement el_text = driver.findElement(AppiumBy.className("android.widget.EditText"));
         el_text.click();
-        el_text.sendKeys("shalomnize@gmail.com");
+        el_text.sendKeys("shalomjsph@gmail.com");
+        
+        
+        WebElement el1 = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.view.View\").instance(3)"));
+        el1.click();
 
         WebElement el_proceed = driver.findElement(AppiumBy.accessibilityId("Proceed"));
         el_proceed.click();
 
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Confirm Password")));
-        Assert.assertTrue(driver.findElement(AppiumBy.accessibilityId("Confirm Password")).isDisplayed());
-
-
-        var packageName = driver.executeScript("mobile: getCurrentPackage");
-        var caps = driver.getSessionId();
-
-    }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'OTP has been sent to')]")));
+        
+        Thread.sleep(3000);
+        
+        Assert.assertTrue(driver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'OTP has been sent to')]")).isDisplayed());
+        
+      }
 
     @AfterTest
-    public void close(){
+    public void close() throws InterruptedException{
+    	
+    	Thread.sleep(5000);
         driver.quit();
     }
 
