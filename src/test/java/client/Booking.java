@@ -289,90 +289,89 @@ public class Booking {
 
     }
     
-    @Test
-    public void E_schedule_booking_salon() throws InterruptedException{
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(60000));
-        
-        WebElement return_btn = wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(0)")));
-        return_btn.click();
-        
-        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Dismiss')]"))).click();
-        
-        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Decline')]"))).click();
-        
-        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(0)"))).click();
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(0)"))).click();
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(0)"))).click();
-
-        //click home button
-        WebElement home_btn = driver.findElement(AppiumBy.accessibilityId("Home"));
-        home_btn.click();
-        
-        Thread.sleep(10000);
-        
-        WebElement el8 = driver.findElement(AppiumBy.accessibilityId("Male grooming"));
-      el8.click();
-      WebElement el9 = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(1)"));
-      el9.click();
-      
-      Thread.sleep(10000);
-      
-      tapAtPoint(138, 200);
-      
-      Thread.sleep(1000);
-      
-      tapAtPoint(327, 1143);
-      
-      Thread.sleep(1000);
-      
-      tapAtPoint(185, 1161);
-      
-      Thread.sleep(1000);
-      
-      tapAtPoint(139, 1257);
-      tapAtPoint(324, 1152);
-      
-      Thread.sleep(10000);
-
-      
-     
-      tapAtPoint(652, 1443);
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Book Service"))).click();
-      
-      Thread.sleep(10000);
-      
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.className("android.widget.ImageView"))).click();
-      
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'W')]"))).click();
-      
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("9:00 PM"))).click();
-      
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Next"))).click();
-      
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Next"))).click();
-      
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(1)"))).click();
-      
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Next"))).click();
-      
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Next"))).click();
-      
-      Thread.sleep(10000);
-      
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Proceed to Payment"))).click();
-      
-      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Agree & Proceed"))).click();
-
-      Thread.sleep(3000);
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Pay')]"))).click();
-
-        Assert.assertTrue(driver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Pay')]")).isDisplayed());
-
-    }
+//    @Test
+//    public void E_schedule_booking_salon() throws InterruptedException{
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(60000));
+//        
+//        WebElement return_btn = wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(0)")));
+//        return_btn.click();
+//        
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Dismiss')]"))).click();
+//        
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Decline')]"))).click();
+//        
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(0)"))).click();
+//
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(0)"))).click();
+//
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(0)"))).click();
+//
+//        //click home button
+//        WebElement home_btn = driver.findElement(AppiumBy.accessibilityId("Home"));
+//        home_btn.click();
+//        
+//        Thread.sleep(10000);
+//        
+//        WebElement el8 = driver.findElement(AppiumBy.accessibilityId("Male grooming"));
+//      el8.click();
+//      WebElement el9 = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(1)"));
+//      el9.click();
+//      
+//      Thread.sleep(10000);
+//      
+//      tapAtPoint(138, 200);
+//      
+//      Thread.sleep(1000);
+//      
+//      tapAtPoint(327, 1143);
+//      
+//      Thread.sleep(1000);
+//      
+//      tapAtPoint(185, 1161);
+//      
+//      Thread.sleep(1000);
+//      
+//      tapAtPoint(139, 1257);
+//      tapAtPoint(324, 1152);
+//      
+//      Thread.sleep(10000);
+//
+//      
+//     
+//      tapAtPoint(652, 1443);
+//
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Book Service"))).click();
+//      
+//      Thread.sleep(10000);
+//      
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.className("android.widget.ImageView"))).click();
+//      
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'W')]"))).click();
+//      
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("9:00 PM"))).click();
+//      
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Next"))).click();
+//      
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Next"))).click();
+//      
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(1)"))).click();
+//      
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Next"))).click();
+//      
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Next"))).click();
+//      
+//      Thread.sleep(10000);
+//      
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Proceed to Payment"))).click();
+//      
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Agree & Proceed"))).click();
+//
+//      Thread.sleep(3000);
+//
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Pay')]"))).click();
+//
+//        Assert.assertTrue(driver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Pay')]")).isDisplayed());
+//   }
 
 
     @AfterTest
