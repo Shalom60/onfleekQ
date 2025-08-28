@@ -2,6 +2,7 @@ package client;
 
 import java.awt.Point;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Arrays;
@@ -20,6 +21,7 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
 
 import org.testng.annotations.Test;
 
@@ -28,18 +30,25 @@ public class change_password {
 	    public WebDriverWait WebDriverWait;
 
 	    @BeforeTest
-	    public void setup() throws MalformedURLException {
-	        String appiumServerUrl = "http://127.0.0.1:4723";
+	    public void setup() throws MalformedURLException, URISyntaxException{
+	        UiAutomator2Options options = new UiAutomator2Options()
+				      .setDeviceName("Android")
+				      .setAppPackage("com.onfleekq.client")
+				      .setAppActivity("com.onfleekq.client.MainActivity")
+				      .setAppWaitDuration(Duration.ofSeconds(60)); // ⏳ wait max 60s
 
-	        DesiredCapabilities dc = new DesiredCapabilities();
-	        dc.setCapability( "platformName",  "Android");
-	        dc.setCapability( "appium:automationName",  "uiautomator2");
-	        dc.setCapability( "appium:uiautomator2ServerLaunchTimeout",  "60000");
-	        dc.setCapability( "appium:app",  System.getProperty("user.dir")+ "/apps/onfleekq_client.apk");
+	        try {
+	            driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+	        	
+	           
+	        } catch (Exception e) {
+	        	
+	            Assert.fail(" App failed to launch within 60 seconds. Error: " + e.getMessage());
+	        }
 
-	        driver = new AndroidDriver(new URL(appiumServerUrl), dc);
+	//driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+	        
 	    }
-	    
 	    //tap function method
 	    public void tapAtPoint(int x, int y) {
 	        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
@@ -75,35 +84,31 @@ public class change_password {
 	        WebElement el8 = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(1)"));
 	        el8.click();
 	        el8.sendKeys("Shalom@1234");
+	        
+	        tapAtPoint(598, 516);
 
 	        WebElement el9 = driver.findElement(AppiumBy.accessibilityId("Sign In"));
 	        el9.click();
-	        
-	        Thread.sleep(15000);
 
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.id("com.android.permissioncontroller:id/permission_allow_foreground_only_button"))).click();
 
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Profile"))).click();
 	        
-	        Thread.sleep(15000);
-	        
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Password & Security"))).click();
 	       
-	        Thread.sleep(15000);
-	        
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Change Password"))).click();
 	        
 	        WebElement el4 =  wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(0)")));
 	        el4.click();
 	        el4.sendKeys("Shalom@1234");
 	        
+	        tapAtPoint(598, 516);
+	        
 	        WebElement el5 = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(1)"));
 	        el5.click();
 	        el5.sendKeys("Shalom@12345");
 
 	        tapAtPoint(598, 516);
-	        
-	        Thread.sleep(15000);
 	            
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Change Password"))).click();
 	     
@@ -114,6 +119,8 @@ public class change_password {
 	        WebElement CPW =  wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(0)")));
 	        CPW.click();
 	        CPW.sendKeys("Shalom@12345");
+	        
+	        tapAtPoint(598, 516);
 	        
 	        WebElement NPW = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(1)"));
 	        NPW.click();

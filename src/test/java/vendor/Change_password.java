@@ -2,6 +2,8 @@ package vendor;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Pause;
@@ -28,16 +30,12 @@ public class Change_password {
 
     @BeforeTest
     public void setup() throws MalformedURLException{
-        String appiumServerUrl = "http://127.0.0.1:4723";
-
-        DesiredCapabilities dc = new DesiredCapabilities();
-        dc.setCapability( "platformName",  "Android");
-        dc.setCapability( "appium:automationName",  "uiautomator2");
-        dc.setCapability( "appium:app",  System.getProperty("user.dir")+ "/apps/onfleekq_vendor.apk");
-
-        driver = new AndroidDriver(new URL(appiumServerUrl), dc);
-
-    }
+    	   UiAutomator2Options options = new UiAutomator2Options()
+                   .setDeviceName("Android")
+                   .setAppPackage("com.onfleekq_vendor")
+                   .setAppActivity("com.onfleekq_vendor.MainActivity");
+           driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+       }
 
     @Test
     public void change_password_test() throws InterruptedException {
@@ -86,6 +84,13 @@ public class Change_password {
 
         WebElement save_btn = driver.findElement(AppiumBy.accessibilityId("Save"));
         save_btn.click();
+        
+        Thread.sleep(5000);
+        
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().text(\"Password & Security\")"))).click();
+        
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().text(\"Change Password\")"))).click();
+
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.androidUIAutomator("new UiSelector().text(\"Enter your current password\")"))).sendKeys("Shalom@12345");
 

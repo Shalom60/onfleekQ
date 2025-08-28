@@ -32,7 +32,6 @@ public class PerformanceLog {
                 .setDeviceName("Android")
                 .setAppPackage("com.onfleekq_vendor")
                 .setAppActivity("com.onfleekq_vendor.MainActivity");
-
         driver = new AndroidDriver(new URL("http://localhost:4723"), options);
     }
 

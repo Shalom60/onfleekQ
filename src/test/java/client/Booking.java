@@ -22,6 +22,8 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.android.options.app.SupportsAppPackageOption;
 
 
 
@@ -32,19 +34,17 @@ public class Booking {
 
     @BeforeTest
     public void setup() throws MalformedURLException, URISyntaxException{
-        String appiumServerUrl = "http://127.0.0.1:4723";
+        UiAutomator2Options options = new UiAutomator2Options()
+			      .setDeviceName("Android")
+			      .setAppPackage("com.onfleekq.client")
+			      .setAppActivity("com.onfleekq.client.MainActivity");
 
-        DesiredCapabilities dc = new DesiredCapabilities();
-        dc.setCapability( "platformName",  "Android");
-        dc.setCapability( "appium:automationName",  "uiautomator2");
-        dc.setCapability( "appium:uiautomator2ServerLaunchTimeout",  "60000");
-        dc.setCapability( "appium:app",  System.getProperty("user.dir")+ "/apps/onfleekq_client.apk");
-
-        driver = new AndroidDriver(new URI(appiumServerUrl).toURL(), dc);
+driver = new AndroidDriver(new URL("http://localhost:4723"), options);
         
     }
 
-    @Test
+
+	@Test
     public void A_login_test() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(60000));
 
