@@ -2,6 +2,8 @@ package vendor;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Pause;
@@ -26,16 +28,23 @@ public class Forget_password {
 
     @BeforeTest
     public void setup() throws MalformedURLException{
-        String appiumServerUrl = "http://127.0.0.1:4723";
+ 	   UiAutomator2Options options = new UiAutomator2Options()
+                .setDeviceName("Android")
+                .setAppPackage("com.onfleekq_vendor")
+                .setAppActivity("com.onfleekq_vendor.MainActivity")
+ 	           .setAppWaitDuration(Duration.ofSeconds(60)); // ⏳ wait max 60s
 
-        DesiredCapabilities dc = new DesiredCapabilities();
-        dc.setCapability( "platformName",  "Android");
-        dc.setCapability( "appium:automationName",  "uiautomator2");
-        dc.setCapability( "appium:app",  System.getProperty("user.dir")+ "/apps/onfleekq_vendor.apk");
-
-        driver = new AndroidDriver(new URL(appiumServerUrl), dc);
-
+        try {
+            driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+        	
+           
+        } catch (Exception e) {
+        	
+            Assert.fail(" App failed to launch within 60 seconds. Error: " + e.getMessage());
+        }
+        
     }
+    
     @Test
     public void forget_password_test(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(60000));

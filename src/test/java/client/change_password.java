@@ -46,7 +46,6 @@ public class change_password {
 	            Assert.fail(" App failed to launch within 60 seconds. Error: " + e.getMessage());
 	        }
 
-	//driver = new AndroidDriver(new URL("http://localhost:4723"), options);
 	        
 	    }
 	    //tap function method

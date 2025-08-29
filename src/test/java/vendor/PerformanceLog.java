@@ -13,6 +13,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.testng.annotations.*;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -27,12 +28,22 @@ public class PerformanceLog {
 
 
     @BeforeTest
-    public void setUp() throws Exception {
-        UiAutomator2Options options = new UiAutomator2Options()
+    public void setup() throws MalformedURLException{
+ 	   UiAutomator2Options options = new UiAutomator2Options()
                 .setDeviceName("Android")
                 .setAppPackage("com.onfleekq_vendor")
-                .setAppActivity("com.onfleekq_vendor.MainActivity");
-        driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+                .setAppActivity("com.onfleekq_vendor.MainActivity")
+ 	           .setAppWaitDuration(Duration.ofSeconds(60)); // ⏳ wait max 60s
+
+        try {
+            driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+        	
+           
+        } catch (Exception e) {
+        	
+            Assert.fail(" App failed to launch within 60 seconds. Error: " + e.getMessage());
+        }
+        
     }
 
     @Test

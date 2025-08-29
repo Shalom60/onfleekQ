@@ -1,6 +1,7 @@
 package client;
 
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.Duration;
 
@@ -15,6 +16,7 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
 
 
 public class Forgot_password {
@@ -22,16 +24,23 @@ public class Forgot_password {
     public WebDriverWait WebDriverWait;
 
     @BeforeTest
-    public void setup() throws MalformedURLException {
-        String appiumServerUrl = "http://127.0.0.1:4723";
+    public void setup() throws MalformedURLException, URISyntaxException{
+        UiAutomator2Options options = new UiAutomator2Options()
+			      .setDeviceName("Android")
+			      .setAppPackage("com.onfleekq.client")
+			      .setAppActivity("com.onfleekq.client.MainActivity")
+			      .setAppWaitDuration(Duration.ofSeconds(60)); // ⏳ wait max 60s
 
-        DesiredCapabilities dc = new DesiredCapabilities();
-        dc.setCapability( "platformName",  "Android");
-        dc.setCapability( "appium:automationName",  "uiautomator2");
-        dc.setCapability( "appium:uiautomator2ServerLaunchTimeout",  "60000");
-        dc.setCapability( "appium:app",  System.getProperty("user.dir")+ "/apps/onfleekq_client.apk");
+        try {
+            driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+        	
+           
+        } catch (Exception e) {
+        	
+            Assert.fail(" App failed to launch within 60 seconds. Error: " + e.getMessage());
+        }
 
-        driver = new AndroidDriver(new URL(appiumServerUrl), dc);
+        
     }
 
     @Test

@@ -37,9 +37,18 @@ public class Booking {
         UiAutomator2Options options = new UiAutomator2Options()
 			      .setDeviceName("Android")
 			      .setAppPackage("com.onfleekq.client")
-			      .setAppActivity("com.onfleekq.client.MainActivity");
+			      .setAppActivity("com.onfleekq.client.MainActivity")
+			      .setAppWaitDuration(Duration.ofSeconds(60)); // ⏳ wait max 60s
 
-driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+        try {
+            driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+        	
+           
+        } catch (Exception e) {
+        	
+            Assert.fail(" App failed to launch within 60 seconds. Error: " + e.getMessage());
+        }
+
         
     }
 

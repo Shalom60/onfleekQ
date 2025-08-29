@@ -18,6 +18,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Arrays;
@@ -33,10 +34,21 @@ public class Change_password {
     	   UiAutomator2Options options = new UiAutomator2Options()
                    .setDeviceName("Android")
                    .setAppPackage("com.onfleekq_vendor")
-                   .setAppActivity("com.onfleekq_vendor.MainActivity");
-           driver = new AndroidDriver(new URL("http://localhost:4723"), options);
-       }
+                   .setAppActivity("com.onfleekq_vendor.MainActivity")
+    	           .setAppWaitDuration(Duration.ofSeconds(60)); // ⏳ wait max 60s
 
+           try {
+               driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+           	
+              
+           } catch (Exception e) {
+           	
+               Assert.fail(" App failed to launch within 60 seconds. Error: " + e.getMessage());
+           }
+
+           
+       }
+			      
     @Test
     public void change_password_test() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(60000));

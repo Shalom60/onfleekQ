@@ -34,8 +34,19 @@ public class Sign_up {
 	    	   UiAutomator2Options options = new UiAutomator2Options()
 	                   .setDeviceName("Android")
 	                   .setAppPackage("com.onfleekq_vendor")
-	                   .setAppActivity("com.onfleekq_vendor.MainActivity");
-	           driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+	                   .setAppActivity("com.onfleekq_vendor.MainActivity")
+	    	           .setAppWaitDuration(Duration.ofSeconds(60)); // ⏳ wait max 60s
+
+	           try {
+	               driver = new AndroidDriver(new URL("http://localhost:4723"), options);
+	           	
+	              
+	           } catch (Exception e) {
+	           	
+	               Assert.fail(" App failed to launch within 60 seconds. Error: " + e.getMessage());
+	           }
+
+	           
 	       }	    
 
 	        public static final Random random = new Random();
